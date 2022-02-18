@@ -3,4 +3,4 @@ project(Operating_System C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Operating_System a.c)
+add_executable(Operating_System demo.c)

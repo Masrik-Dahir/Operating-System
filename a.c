@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h> /* for exit */
 #include <stdbool.h>
+#include <unistd.h>
 /*
  * shm-server - not sure of the origin of code segment.
  * Old source, not sure of the origin
@@ -27,7 +28,7 @@ int main()
     int shmid;
     key_t key;
     char *shm, *s;
-    char new[] = "Process A";
+    char new[] = "I am Process A";
     char last[] = "Goodbye";
 
     /*

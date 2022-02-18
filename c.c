@@ -16,7 +16,7 @@ main() {
     int shmid;
     key_t key;
     char *shm, *s;
-    char new[] = "Process C";
+    char new[] = "I am Process C";
 
     /*
      * We'll name our shared memory segment
@@ -66,17 +66,23 @@ main() {
     /*
      * Now read what the server put in the memory.
      */
-    s = shm;
-    n = nhm;
 
-    if (*nhm == '2'){
-        for(c = 0; c < sizeof new; c++ )
-            *s++ = new[c]; /* post fix */
-        *s = (char) NULL;
-        *n = '3';
+    while (!((void *) nhm == '2')) {
+        usleep(10);
+        s = shm;
+        n = nhm;
+
+
+        if (*nhm == '2') {
+            for (c = 0; c < sizeof new; c++)
+                *s++ = new[c]; /* post fix */
+            *s = (char) NULL;
+            *n = '3';
+            break;
+        }
+
     }
 
     return 0;
 }
 
-main();

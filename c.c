@@ -68,25 +68,14 @@ main() {
      */
     s = shm;
     n = nhm;
-    for(c = 0; c < sizeof new; c++ )
-        *s++ = new[c]; /* post fix */
-    *s = (char) NULL;
-    *n = '2';
 
+    if (*nhm == '2'){
+        for(c = 0; c < sizeof new; c++ )
+            *s++ = new[c]; /* post fix */
+        *s = (char) NULL;
+        *n = '3';
+    }
 
-    for (s = shm; *s != (char) NULL; s++)
-        putchar(*s);
-    putchar('\n');
-
-
-
-
-    /*
-     * Finally, change the first character of the
-     * segment to '*', indicating we have read
-     * the segment.
-     */
-    *shm = '*';
     return 0;
 }
 

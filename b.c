@@ -66,29 +66,17 @@ main() {
     /*
      * Now read what the server put in the memory.
      */
+
     s = shm;
     n = nhm;
-    for(c = 0; c < sizeof new; c++ )
-        *s++ = new[c]; /* post fix */
-    *s = (char) NULL;
-    *n = '2';
 
+    if (*nhm == '1'){
+        for(c = 0; c < sizeof new; c++ )
+            *s++ = new[c]; /* post fix */
+        *s = (char) NULL;
+        *n = '2';
+    }
 
-    for (s = shm; *s != (char) NULL; s++)
-        putchar(*s);
-    putchar('\n');
-
-//    putchar(*n);
-
-
-
-
-    /*
-     * Finally, change the first character of the
-     * segment to '*', indicating we have read
-     * the segment.
-     */
-//    *shm = '*';
     return 0;
 }
 

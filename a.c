@@ -3,6 +3,7 @@
 #include <sys/shm.h>
 #include <stdio.h>
 #include <stdlib.h> /* for exit */
+#include <stdbool.h>
 /*
  * shm-server - not sure of the origin of code segment.
  * Old source, not sure of the origin
@@ -101,21 +102,21 @@ int main()
     putchar('\n');
 
 
-
-    while( *shm != '*' )
+    bool now = true;
+    while( !(now == false && *nhm == '3'))
 //        sleep(1);
-        if (*nhm == '2'){
+        if (*nhm == '2' && now == true){
             for (s = shm; *s != (char) NULL; s++)
                 putchar(*s);
             putchar('\n');
-            *nhm = '*';
+            now = false;
         }
 
-        if (*nhm == '3'){
+        if (*nhm == '3' && now == false){
             for (s = shm; *s != (char) NULL; s++)
                 putchar(*s);
             putchar('\n');
-            *nhm = '*';
+            now = true;
         }
 
 

@@ -141,6 +141,5 @@ int main()
         putchar(*s);
     putchar('\n');
 
-
     return 0;
 }

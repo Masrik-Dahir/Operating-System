@@ -10,24 +10,24 @@
  * or Steve Holmes : http://www2.its.strath.ac.uk/courses/c/
  */
 #define SHMSZ     27
+//
+//#ifdef _WIN32
+//#include <Windows.h>
+//#else
+//#include <unistd.h>
+//#include <string.h>
+//
+//#endif
 
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#include <string.h>
 
-#endif
-
-
-int
-main()
+int main()
 {
     char c;
     int shmid;
     key_t key;
     char *shm, *s;
     char new[] = "Process A";
+    char last[] = "Goodbye";
 
     /*
      * We'll name our shared memory segment
@@ -37,17 +37,17 @@ main()
 
 
     int nhmid;
-    key_t string_key;
+    key_t int_key;
     char *nhm;
     char *n;
-    string_key = 2;
+    int_key = 2;
 
 
 
     /*
      * Create the segment.
      */
-    if( (shmid = shmget(key, SHMSZ, IPC_CREAT | 0666)) < 0 )
+    if( (shmid = shmget(key, SHMSZ, IPC_CREAT | 0644)) < 0 )
     {
         perror("shmget");
         exit(1);
@@ -66,7 +66,7 @@ main()
      */
 
 
-    if( (nhmid = shmget(string_key, SHMSZ, IPC_CREAT | 0644)) < 0 )
+    if((nhmid = shmget(int_key, SHMSZ, IPC_CREAT | 0644)) < 0 )
     {
         perror("shmget");
         exit(1);
@@ -110,25 +110,34 @@ main()
             putchar('\n');
             *nhm = '*';
         }
+
         if (*nhm == '3'){
             for (s = shm; *s != (char) NULL; s++)
                 putchar(*s);
             putchar('\n');
-            *nhm = '&';
+            *nhm = '*';
         }
 
-        if (*nhm == '&'){
-            putchar('a');
-//            char okay[] = "Goodbye";
-//            for( c = 0; c < sizeof okay; c++ )
-//                *s++ = okay[c]; /* post fix */
-//            *s = (char) NULL;
-//
-//            for (s = shm; *s != (char) NULL; s++)
-//                putchar(*s);
-//            putchar('\n');
-//            *shm = '!';
-        }
+
+    if ((shmid = shmget(key, SHMSZ, 0644)) < 0) {
+        perror("shmget");
+        exit(1);
+    }
+    /*
+     * Now we attach the segment to our data space.
+     */
+    if ((shm = shmat(shmid, NULL, 0)) == (char *) -1) {
+        perror("shmat");
+        exit(1);
+    }
+
+    s = shm;
+    int k;
+    for( k = 0; k < sizeof last; k++ )
+        *s++ = last[k]; /* post fix */
+    for (s = shm; *s != (char) NULL; s++)
+        putchar(*s);
+    putchar('\n');
 
 
     return 0;

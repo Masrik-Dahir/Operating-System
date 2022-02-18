@@ -26,10 +26,10 @@ main() {
 
 
     int nhmid;
-    key_t string_key;
+    key_t int_key;
     char *nhm;
     char *n;
-    string_key = 2;
+    int_key = 2;
     /*
      * We need to get the segment named
      * "5678", created by the server.
@@ -52,7 +52,7 @@ main() {
     }
 
 
-    if ((nhmid = shmget(string_key, SHMSZ, 0644)) < 0) {
+    if ((nhmid = shmget(int_key, SHMSZ, 0644)) < 0) {
         perror("shmget");
         exit(1);
     }
@@ -86,7 +86,7 @@ main() {
      * segment to '*', indicating we have read
      * the segment.
      */
-//    *shm = '*';
+    *shm = '*';
     return 0;
 }
 

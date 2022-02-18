@@ -66,7 +66,7 @@ main()
      */
 
 
-    if( (nhmid = shmget(string_key, SHMSZ, IPC_CREAT | 0666)) < 0 )
+    if( (nhmid = shmget(string_key, SHMSZ, IPC_CREAT | 0644)) < 0 )
     {
         perror("shmget");
         exit(1);

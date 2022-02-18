@@ -39,7 +39,7 @@ main() {
     /*
      * Locate the segment.
      */
-    if ((shmid = shmget(key, SHMSZ, 0666)) < 0) {
+    if ((shmid = shmget(key, SHMSZ, 0644)) < 0) {
         perror("shmget");
         exit(1);
     }
@@ -52,7 +52,7 @@ main() {
     }
 
 
-    if ((nhmid = shmget(string_key, SHMSZ, 0666)) < 0) {
+    if ((nhmid = shmget(string_key, SHMSZ, 0644)) < 0) {
         perror("shmget");
         exit(1);
     }

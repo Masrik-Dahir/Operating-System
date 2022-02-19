@@ -2,6 +2,7 @@ CC = gcc
 BIN =  ravg avg_svc
 GEN = avg_clnt.c avg_svc.c avg_xdr.c avg.h
 RPCCOM = rpcgen
+
 all: $(BIN)
 ravg: ravg.o avg_clnt.o avg_xdr.o
 	$(CC) -o $@ ravg.o avg_clnt.o avg_xdr.o -lnsl

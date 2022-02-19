@@ -18,7 +18,6 @@ int main(){
         int n2 = fork();
         if (n2 == 0){
             process_c();
-            exit()
         }
     }
 
@@ -28,7 +27,6 @@ int main(){
 
 int process_a()
 {
-    usleep(100);
     char c;
     int shmid;
     key_t key;

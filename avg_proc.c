@@ -39,7 +39,7 @@ double * average_1(input_data *input, CLIENT *client)
   qsort (arr, size, sizeof(*arr), comp);
   // sum_avg = arr[0];
   if (input->input_data.input_data_len % 2 == 0){
-    sum_avg = ((double) (arr[(input->input_data.input_data_len/2)-1] + arr[input->input_data.input_data_len/2])/2);
+    sum_avg = ((double) arr[(input->input_data.input_data_len/2)-1] + arr[input->input_data.input_data_len/2])/2;
   }
   else{
     sum_avg = arr[((input->input_data.input_data_len +1)/2)-1];

@@ -1,0 +1,79 @@
+Activating GitHub Actions extension...
+...initialized
+Error getting GitHub context
+Git model not found
+Error: Git model not found
+	at a.getAPI (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/extensions/git/dist/main.js:2:885821)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159472
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at c (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159333)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159724
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at l (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159676)
+	at Object.<anonymous> (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:160777)
+	at Generator.next (<anonymous>)
+	at n (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158840)
+Getting root children
+Error getting GitHub context
+Git model not found
+Error: Git model not found
+	at a.getAPI (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/extensions/git/dist/main.js:2:885821)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159472
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at c (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159333)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159724
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at l (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159676)
+	at Object.<anonymous> (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:160777)
+	at Generator.next (<anonymous>)
+	at n (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158840)
+Error getting GitHub context
+Git model not found
+Error: Git model not found
+	at a.getAPI (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/extensions/git/dist/main.js:2:885821)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159472
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at c (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159333)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159724
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at l (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159676)
+	at Object.<anonymous> (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:160777)
+	at Generator.next (<anonymous>)
+	at n (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158840)
+Failed to get GitHub context
+Git model not found
+Error: Git model not found
+	at a.getAPI (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/extensions/git/dist/main.js:2:885821)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159472
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at c (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159333)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159724
+	at Generator.next (<anonymous>)
+	at /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159038
+	at new Promise (<anonymous>)
+	at r (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158783)
+	at l (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:159676)
+	at Object.<anonymous> (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:160777)
+	at Generator.next (<anonymous>)
+	at n (/home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0/dist/extension-node.js:1:158840)

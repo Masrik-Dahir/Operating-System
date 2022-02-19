@@ -1,0 +1,70 @@
+
+
+*
+* Visual Studio Code Server
+*
+* Reminder: You may only use this software with Visual Studio family products,
+* as described in the license https://aka.ms/vscode-remote/license
+*
+
+Extension host agent listening on 34634
+
+[09:10:26] Extension host agent started.
+[09:10:26] [127.0.0.1][7727ef22][ManagementConnection] New connection established.
+[09:10:26] [127.0.0.1][3b53dea9][ExtensionHostConnection] New connection established.
+[09:10:26] [127.0.0.1][3b53dea9][ExtensionHostConnection] <98906> Launched Extension Host Process.
+[09:10:33] [127.0.0.1][7727ef22][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[09:10:33] [127.0.0.1][3b53dea9][ExtensionHostConnection] <98906> Extension Host Process exited with code: 0, signal: null.
+Last EH closed, waiting before shutting down
+[09:10:33] Last EH closed, waiting before shutting down
+Got delay-shutdown request while in shutdown timeout, delaying
+[09:10:52] Got delay-shutdown request while in shutdown timeout, delaying
+Cancelling previous shutdown timeout
+[09:10:52] Cancelling previous shutdown timeout
+[09:10:52] [127.0.0.1][db7b7a1e][ManagementConnection] New connection established.
+[09:10:52] [127.0.0.1][a421dbe3][ExtensionHostConnection] New connection established.
+[09:10:52] [127.0.0.1][a421dbe3][ExtensionHostConnection] <99021> Launched Extension Host Process.
+New EH opened, aborting shutdown
+[09:15:52] New EH opened, aborting shutdown
+[20:31:50] Getting Manifest... github.vscode-pull-request-github
+[20:31:50] Installing extension: github.vscode-pull-request-github
+[20:31:51] Downloaded extension: github.vscode-pull-request-github /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/github.vscode-pull-request-github-0.36.2
+[20:31:51] Extracted extension to /home/dahirma/.vscode-server/extensions/.258b70d0-d330-46e8-bda5-24fb8aaa2565: github.vscode-pull-request-github
+[20:31:51] Renamed to /home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2
+[20:31:51] Extracting completed. github.vscode-pull-request-github
+[20:31:51] Extension installed successfully: github.vscode-pull-request-github
+[20:31:53] Getting Manifest... knisterpeter.vscode-github
+[20:31:53] Installing extension: knisterpeter.vscode-github
+[20:31:53] Downloaded extension: knisterpeter.vscode-github /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/knisterpeter.vscode-github-0.30.7
+[20:31:55] Extracted extension to /home/dahirma/.vscode-server/extensions/.c61805c5-8f91-43a2-ad9c-80bbe9c94871: knisterpeter.vscode-github
+[20:31:55] Renamed to /home/dahirma/.vscode-server/extensions/knisterpeter.vscode-github-0.30.7
+[20:31:55] Extracting completed. knisterpeter.vscode-github
+[20:31:55] Extension installed successfully: knisterpeter.vscode-github
+[20:32:45] Getting Manifest... cschleiden.vscode-github-actions
+[20:32:46] Installing extension: cschleiden.vscode-github-actions
+[20:32:46] Downloaded extension: cschleiden.vscode-github-actions /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/cschleiden.vscode-github-actions-0.22.0
+[20:32:48] Extracted extension to /home/dahirma/.vscode-server/extensions/.62c10ce0-ce66-41fc-82e9-64841b90c711: cschleiden.vscode-github-actions
+[20:32:48] Renamed to /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0
+[20:32:48] Extracting completed. cschleiden.vscode-github-actions
+[20:32:48] Extension installed successfully: cschleiden.vscode-github-actions
+[20:33:28] [127.0.0.1][db7b7a1e][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[20:33:28] [127.0.0.1][a421dbe3][ExtensionHostConnection] <99021> Extension Host Process exited with code: 0, signal: null.
+Last EH closed, waiting before shutting down
+[20:33:28] Last EH closed, waiting before shutting down
+Got delay-shutdown request while in shutdown timeout, delaying
+[20:33:45] Got delay-shutdown request while in shutdown timeout, delaying
+Cancelling previous shutdown timeout
+[20:33:45] Cancelling previous shutdown timeout
+[20:33:45] [127.0.0.1][7a6e2f5c][ManagementConnection] New connection established.
+[20:33:45] [127.0.0.1][638f4a34][ExtensionHostConnection] New connection established.
+[20:33:45] [127.0.0.1][638f4a34][ExtensionHostConnection] <117063> Launched Extension Host Process.
+[IPC Library: Pty Host]  INFO Persistent process "24": Replaying 288 chars and 1 size events
+[IPC Library: Pty Host]  INFO Persistent process "25": Replaying 192 chars and 1 size events
+[IPC Library: Pty Host]  INFO Persistent process "27": Replaying 678 chars and 1 size events
+[20:34:35] Getting Manifest... eamodio.gitlens-insiders
+[20:34:35] Installing extension: eamodio.gitlens-insiders
+[20:34:35] Downloaded extension: eamodio.gitlens-insiders /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/eamodio.gitlens-insiders-2022.2.1504
+[20:34:36] Extracted extension to /home/dahirma/.vscode-server/extensions/.0f5942e3-f4f4-4385-9e7c-3fe950a516c3: eamodio.gitlens-insiders
+[20:34:36] Renamed to /home/dahirma/.vscode-server/extensions/eamodio.gitlens-insiders-2022.2.1504
+[20:34:36] Extracting completed. eamodio.gitlens-insiders
+[20:34:36] Extension installed successfully: eamodio.gitlens-insiders

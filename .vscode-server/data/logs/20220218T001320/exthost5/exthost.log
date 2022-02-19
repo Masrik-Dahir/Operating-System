@@ -1,0 +1,20 @@
+[2022-02-18 00:41:05.003] [exthost] [info] Extension host with pid 19235 started
+[2022-02-18 00:41:05.032] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': Lock acquired.
+[2022-02-18 00:41:05.136] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-02-18 00:41:05.152] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-02-18 00:41:05.283] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-02-18 00:41:05.461] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-02-18 00:41:05.523] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: true, activationEvent: 'workspaceContains:*.h,*.c,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.cpp', root cause: franneck94.c-cpp-runner
+[2022-02-18 00:41:05.813] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: true, activationEvent: 'workspaceContains:*.h,*.c,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.cpp', root cause: franneck94.c-cpp-runner
+[2022-02-18 00:41:06.065] [exthost] [info] ExtensionService#_doActivateExtension franneck94.c-cpp-runner, startup: true, activationEvent: 'workspaceContains:*.h,*.c,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.cpp'
+[2022-02-18 00:41:06.390] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 00:41:06.437] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 00:41:06.449] [exthost] [info] Eager extensions activated
+[2022-02-18 04:01:05.457] [exthost] [info] extension host terminating: renderer disconnected for too long (2)
+[2022-02-18 04:01:05.459] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-02-18 04:01:05.493] [exthost] [error] SyntaxError: Unexpected end of JSON input
+	at JSON.parse (<anonymous>)
+	at _ (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/out/vs/workbench/services/extensions/node/extensionHostProcess.js:94:96508)
+	at async /home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/out/vs/workbench/services/extensions/node/extensionHostProcess.js:94:95388
+[2022-02-18 04:01:05.493] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': The lock was lost unexpectedly.
+[2022-02-18 04:01:05.549] [exthost] [info] Extension host with pid 19235 exiting with code 0

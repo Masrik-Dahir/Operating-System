@@ -1,0 +1,21 @@
+[2022-02-18 03:56:07.361] [exthost] [info] Extension host with pid 65274 started
+[2022-02-18 03:56:07.364] [exthost] [error] Error: EEXIST: file already exists, open '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock'
+[2022-02-18 03:56:07.368] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': Could not acquire lock, checking if the file is stale.
+[2022-02-18 03:56:07.384] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': The lock does not look stale, elapsed: 318 ms, giving up.
+[2022-02-18 03:56:07.386] [exthost] [error] Error: EEXIST: file already exists, open '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9-1/vscode.lock'
+[2022-02-18 03:56:07.388] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9-1/vscode.lock': Could not acquire lock, checking if the file is stale.
+[2022-02-18 03:56:07.390] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9-1/vscode.lock': The lock does not look stale, elapsed: 70 ms, giving up.
+[2022-02-18 03:56:07.399] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9-2/vscode.lock': Lock acquired.
+[2022-02-18 03:56:07.579] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onLanguage:c'
+[2022-02-18 03:56:07.847] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onLanguage:c', root cause: franneck94.c-cpp-runner
+[2022-02-18 03:56:07.881] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-02-18 03:56:07.888] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-02-18 03:56:08.134] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-02-18 03:56:08.241] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-02-18 03:56:08.274] [exthost] [info] ExtensionService#_doActivateExtension franneck94.c-cpp-runner, startup: false, activationEvent: 'onLanguage:c'
+[2022-02-18 03:56:08.715] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 03:56:08.738] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 03:56:08.744] [exthost] [info] Eager extensions activated
+[2022-02-18 04:47:51.306] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-02-18 04:47:51.307] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9-2/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-02-18 04:47:51.410] [exthost] [info] Extension host with pid 65274 exiting with code 0

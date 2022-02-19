@@ -72,6 +72,9 @@ void averageprog_1( char* host, int argc, char *argv[] )
     */
    result_1 = average_1( &average_1_arg, clnt );
 
+   // For median
+   // result_1 = median_1( &average_1_arg, clnt );
+
    if (result_1 == NULL) 
       {
       clnt_perror(clnt, "call failed:");
@@ -79,7 +82,7 @@ void averageprog_1( char* host, int argc, char *argv[] )
 
    clnt_destroy( clnt );
 
-   printf( "average = %e\n",*result_1 );
+   printf( "median = %.2f\n",*result_1 );
 }
 
 

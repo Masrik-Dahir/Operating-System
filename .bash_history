@@ -1,12 +1,3 @@
-./draft
-gcc demo.c -o demo
-./draft
-gcc demo.c -o demo
-./draft
-gcc draft.c -o draft
-./draft
-gcc draft.c -o draft
-./draft
 gcc draft.c -o draft
 ./draft
 gcc draft.c -o draft
@@ -998,3 +989,12 @@ gcc kirk_2.c -o kirk2
 ./kirk2
 gcc kirk_2.c -o kirk2
 ./kirk2
+gcc spock.c -o spock
+./spock
+gcc kirk.c -o kirk
+./kirk
+gcc spock_2.c -o spock2
+./spock2
+make
+git
+sudo apt install git

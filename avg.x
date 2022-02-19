@@ -20,4 +20,4 @@ program AVERAGEPROG {
     version AVERAGEVERS {
         double AVERAGE(input_data) = 1;
     } = 1;
-} = 22855;
+} = 24224;

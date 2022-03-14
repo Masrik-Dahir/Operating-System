@@ -1,0 +1,24 @@
+[2022-02-18 00:17:08.020] [exthost] [info] Extension host with pid 13242 started
+[2022-02-18 00:17:08.051] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/ec660ac1ae607eadddd2063b101035b7/vscode.lock': Lock acquired.
+[2022-02-18 00:17:08.148] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-02-18 00:17:08.164] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-02-18 00:17:08.237] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-02-18 00:17:08.401] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-02-18 00:17:08.532] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 00:17:08.575] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 00:17:08.585] [exthost] [info] Eager extensions activated
+[2022-02-18 00:17:27.636] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+[2022-02-18 00:17:38.540] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onDebug'
+[2022-02-18 00:17:43.143] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onLanguage:c'
+[2022-02-18 00:18:13.507] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug, startup: false, activationEvent: 'onDebugInitialConfigurations'
+[2022-02-18 00:18:16.355] [exthost] [info] ExtensionService#_doActivateExtension vscode.grunt, startup: false, activationEvent: 'onTaskType:grunt'
+[2022-02-18 00:18:16.365] [exthost] [info] ExtensionService#_doActivateExtension vscode.gulp, startup: false, activationEvent: 'onTaskType:gulp'
+[2022-02-18 00:18:16.373] [exthost] [info] ExtensionService#_doActivateExtension vscode.jake, startup: false, activationEvent: 'onTaskType:jake'
+[2022-02-18 00:18:16.381] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTaskType:npm'
+[2022-02-18 00:18:16.470] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onTaskType:typescript'
+[2022-02-18 00:18:17.080] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+[2022-02-18 00:18:17.094] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+[2022-02-18 00:18:17.128] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+[2022-02-18 00:38:46.311] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-02-18 00:38:46.312] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/ec660ac1ae607eadddd2063b101035b7/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-02-18 00:38:46.398] [exthost] [info] Extension host with pid 13242 exiting with code 0

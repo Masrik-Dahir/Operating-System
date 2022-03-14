@@ -1,0 +1,374 @@
+{
+	"name": "vscode-github-actions",
+	"displayName": "GitHub Actions",
+	"publisher": "cschleiden",
+	"icon": "resources/logo.png",
+	"license": "MIT",
+	"repository": {
+		"url": "https://github.com/cschleiden/vscode-github-actions"
+	},
+	"description": "GitHub Actions workflows and runs for github.com hosted repositories in VS Code",
+	"version": "0.22.0",
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"extensionKind": [
+		"workspace"
+	],
+	"capabilities": {
+		"virtualWorkspaces": true
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:workflows",
+		"onView:settings",
+		"workspaceContains:**/.github/workflows/**"
+	],
+	"main": "./dist/extension-node.js",
+	"browser": "./dist/extension-web.js",
+	"contributes": {
+		"configuration": {
+			"title": "GitHub Actions",
+			"properties": {
+				"github-actions.workflows.pinned.workflows": {
+					"description": "Workflows to show in the status bar, identified by their paths",
+					"type": "array",
+					"scope": "window"
+				},
+				"github-actions.workflows.pinned.refresh.enabled": {
+					"type": "boolean",
+					"description": "Auto-refresh pinned workflows. Note: this uses polling and counts against your GitHub API rate limit",
+					"default": false,
+					"scope": "window"
+				},
+				"github-actions.workflows.pinned.refresh.interval": {
+					"type": "number",
+					"description": "Time to wait between calls to update pinned workflows in seconds",
+					"default": 30,
+					"scope": "window"
+				},
+				"github-actions.org-features": {
+					"type": "boolean",
+					"description": "Whether org features should be enabled. Requires the `admin:org` scope",
+					"default": false,
+					"scope": "window"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "github-actions.explorer.refresh",
+				"category": "GitHub Actions",
+				"title": "Refresh",
+				"icon": {
+					"dark": "resources/icons/dark/refresh.svg",
+					"light": "resources/icons/light/refresh.svg"
+				}
+			},
+			{
+				"command": "github-actions.explorer.openRun",
+				"category": "GitHub Actions",
+				"title": "Open workflow run",
+				"when": "viewItem =~ /workflow/"
+			},
+			{
+				"command": "github-actions.explorer.openWorkflowFile",
+				"category": "GitHub Actions",
+				"title": "Open workflow",
+				"when": "viewItem =~ /workflow/"
+			},
+			{
+				"command": "github-actions.explorer.triggerRun",
+				"category": "GitHub Actions",
+				"title": "Trigger workflow",
+				"when": "viewItem =~ /workflow/ && viewItem =~ /dispatch/",
+				"icon": {
+					"dark": "resources/icons/dark/run.svg",
+					"light": "resources/icons/light/run.svg"
+				}
+			},
+			{
+				"command": "github-actions.workflow.run.open",
+				"category": "GitHub Actions",
+				"title": "Open workflow run",
+				"when": "viewItem =~ /run/"
+			},
+			{
+				"command": "github-actions.workflow.logs",
+				"category": "GitHub Actions",
+				"title": "View logs",
+				"when": "viewItem =~ /job/ || viewItem =~ /step/",
+				"icon": {
+					"dark": "resources/icons/dark/logs.svg",
+					"light": "resources/icons/light/logs.svg"
+				}
+			},
+			{
+				"command": "github-actions.workflow.run.rerun",
+				"category": "GitHub Actions",
+				"title": "Rerun workflow run",
+				"when": "viewItem =~ /run/ && viewItem =~ /rerunnable/"
+			},
+			{
+				"command": "github-actions.workflow.run.cancel",
+				"category": "GitHub Actions",
+				"title": "Cancel workflow run",
+				"when": "viewItem =~ /run/ && viewItem =~ /cancelable/"
+			},
+			{
+				"command": "github-actions.settings.secrets.manage",
+				"category": "GitHub Actions",
+				"title": "Add new secret",
+				"icon": "$(globe)"
+			},
+			{
+				"command": "github-actions.settings.secret.add",
+				"category": "GitHub Actions",
+				"title": "Add new secret",
+				"icon": {
+					"dark": "resources/icons/dark/add.svg",
+					"light": "resources/icons/light/add.svg"
+				}
+			},
+			{
+				"command": "github-actions.settings.secret.copy",
+				"category": "GitHub Actions",
+				"title": "Copy secret name"
+			},
+			{
+				"command": "github-actions.settings.secret.update",
+				"category": "GitHub Actions",
+				"title": "Update secret",
+				"icon": {
+					"dark": "resources/icons/dark/edit.svg",
+					"light": "resources/icons/light/edit.svg"
+				}
+			},
+			{
+				"command": "github-actions.settings.secret.delete",
+				"category": "GitHub Actions",
+				"title": "Delete secret",
+				"icon": {
+					"dark": "resources/icons/dark/remove.svg",
+					"light": "resources/icons/light/remove.svg"
+				}
+			},
+			{
+				"command": "github-actions.workflow.pin",
+				"category": "GitHub Actions",
+				"title": "Pin workflow",
+				"icon": "$(pin)"
+			},
+			{
+				"command": "github-actions.workflow.unpin",
+				"category": "GitHub Actions",
+				"title": "Unpin workflow",
+				"icon": "$(pinned)"
+			}
+		],
+		"views": {
+			"github-actions": [
+				{
+					"id": "github-actions.workflows",
+					"name": "Workflows"
+				},
+				{
+					"id": "github-actions.settings",
+					"name": "Settings"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "github-actions",
+					"title": "GitHub Actions",
+					"icon": "resources/icons/light/explorer.svg"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "github-actions.explorer.refresh",
+					"group": "navigation",
+					"when": "view == github-actions.workflows || view == github-actions.settings"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "github-actions.explorer.triggerRun",
+					"when": "(githubActions:activeFile =~ /rdispatch/ || githubActions:activeFile =~ /wdispatch/) && resourceExtname =~ /\\.ya?ml/",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "github-actions.explorer.openWorkflowFile",
+					"when": "viewItem =~ /workflow/"
+				},
+				{
+					"command": "github-actions.workflow.pin",
+					"group": "inline@1",
+					"when": "viewItem =~ /workflow/ && viewItem =~ /pinnable/"
+				},
+				{
+					"command": "github-actions.workflow.pin",
+					"when": "viewItem =~ /workflow/ && viewItem =~ /pinnable/"
+				},
+				{
+					"command": "github-actions.workflow.unpin",
+					"group": "inline@2",
+					"when": "viewItem =~ /workflow/ && viewItem =~ /pinned/"
+				},
+				{
+					"command": "github-actions.workflow.unpin",
+					"when": "viewItem =~ /workflow/ && viewItem =~ /pinned/"
+				},
+				{
+					"command": "github-actions.explorer.triggerRun",
+					"group": "inline@10",
+					"when": "viewItem =~ /rdispatch/ || viewItem =~ /wdispatch/"
+				},
+				{
+					"command": "github-actions.explorer.triggerRun",
+					"when": "viewItem =~ /rdispatch/ || viewItem =~ /wdispatch/"
+				},
+				{
+					"command": "github-actions.workflow.run.open",
+					"when": "viewItem =~ /run/"
+				},
+				{
+					"command": "github-actions.workflow.logs",
+					"group": "inline",
+					"when": "viewItem =~ /job/ && viewItem =~ /completed/"
+				},
+				{
+					"command": "github-actions.workflow.run.cancel",
+					"when": "viewItem =~ /run/ && viewItem =~ /cancelable/"
+				},
+				{
+					"command": "github-actions.workflow.run.rerun",
+					"when": "viewItem =~ /run/ && viewItem =~ /rerunnable/"
+				},
+				{
+					"command": "github-actions.settings.secret.add",
+					"group": "inline",
+					"when": "viewItem == 'secrets'"
+				},
+				{
+					"command": "github-actions.settings.secrets.manage",
+					"group": "inline",
+					"when": "viewItem == 'org-secrets'"
+				},
+				{
+					"command": "github-actions.settings.secret.update",
+					"when": "viewItem == 'secret'",
+					"group": "inline@1"
+				},
+				{
+					"command": "github-actions.settings.secret.copy",
+					"when": "viewItem == 'secret' || viewItem == 'org-secret'",
+					"group": "context"
+				},
+				{
+					"command": "github-actions.settings.secret.delete",
+					"when": "viewItem == 'secret'",
+					"group": "inline@2"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "github-actions.explorer.openWorkflowFile",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.explorer.triggerRun",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.workflow.run.open",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.workflow.run.cancel",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.workflow.run.rerun",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.settings.secrets.manage",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.settings.secret.add",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.settings.secret.update",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.settings.secret.delete",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.workflow.pin",
+					"when": "false"
+				},
+				{
+					"command": "github-actions.workflow.unpin",
+					"when": "false"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"clean": "rimraf ./dist ./out",
+		"package": "npm run clean && vsce package",
+		"build": "webpack --mode production",
+		"vscode:prepublish": "npm run build",
+		"watch": "webpack --watch --mode development --env esbuild --info-verbosity verbose"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/js-yaml": "^3.12.1",
+		"@types/node": "14.14.32",
+		"@types/uuid": "^3.4.6",
+		"@types/vscode": "1.60.0",
+		"@types/yaml": "^1.2.0",
+		"glob": "^7.1.5",
+		"node-loader": "^0.6.0",
+		"rimraf": "^3.0.1",
+		"ts-loader": "^6.2.1",
+		"tslint": "^5.20.0",
+		"typescript": "4.2.3",
+		"vsce": "1.96.1",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.10"
+	},
+	"dependencies": {
+		"@octokit/rest": "18.6.7",
+		"abab": "^2.0.5",
+		"github-actions-parser": "0.24.0",
+		"js-yaml": "^3.14.0",
+		"ssh-config": "^3.0.0",
+		"tunnel": "0.0.6",
+		"tweetsodium": "0.0.4",
+		"util": "^0.12.1",
+		"uuid": "^3.3.3",
+		"yaml": "^1.7.2"
+	},
+	"__metadata": {
+		"id": "04f49bfc-8330-4eee-8237-ea938fb755ef",
+		"publisherId": "e90b6672-4910-4d59-9330-1a0e47586ba6",
+		"publisherDisplayName": "Christopher Schleiden",
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1645234368157
+	}
+}

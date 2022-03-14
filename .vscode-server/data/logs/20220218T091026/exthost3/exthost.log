@@ -1,0 +1,28 @@
+[2022-02-18 20:33:47.143] [exthost] [info] Extension host with pid 117063 started
+[2022-02-18 20:33:47.171] [exthost] [info] Lock '/home/dahirma/.vscode-server/data/User/workspaceStorage/54333e458a16b79846b6650c64d5bde9/vscode.lock': Lock acquired.
+[2022-02-18 20:33:47.291] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onLanguage:c'
+[2022-02-18 20:33:47.598] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onLanguage:c', root cause: franneck94.c-cpp-runner
+[2022-02-18 20:33:47.640] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-02-18 20:33:47.648] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-02-18 20:33:47.658] [exthost] [info] ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: true, activationEvent: '*'
+[2022-02-18 20:33:47.838] [exthost] [info] ExtensionService#_doActivateExtension KnisterPeter.vscode-github, startup: true, activationEvent: '*'
+[2022-02-18 20:33:48.449] [exthost] [info] ExtensionService#_doActivateExtension franneck94.c-cpp-runner, startup: false, activationEvent: 'onLanguage:c'
+[2022-02-18 20:33:48.899] [exthost] [info] ExtensionService#_doActivateExtension cschleiden.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**'
+[2022-02-18 20:33:49.110] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.vscode-pull-request-github
+[2022-02-18 20:33:49.318] [exthost] [error] Activating extension GitHub.vscode-pull-request-github failed due to an error:
+[2022-02-18 20:33:49.318] [exthost] [error] Error: Git model not found
+	at a.getAPI (/home/dahirma/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/extensions/git/dist/main.js:2:885821)
+	at new ld (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1163:17239)
+	at Function.createProvider (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1163:17976)
+	at processTicksAndRejections (internal/process/task_queues.js:93:5)
+	at async dv (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1163:23929)
+	at async Mp (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1179:26742)
+	at async oy (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1179:27068)
+	at async ay (/home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2/dist/extension.js:1179:26691)
+	at async Promise.all (index 2)
+	at async Promise.all (index 0)
+[2022-02-18 20:33:49.318] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-02-18 20:33:49.415] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 20:33:49.437] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-02-18 20:33:49.443] [exthost] [info] Eager extensions activated
+[2022-02-18 20:34:37.980] [exthost] [info] ExtensionService#_doActivateExtension eamodio.gitlens-insiders, startup: false, activationEvent: 'onStartupFinished'

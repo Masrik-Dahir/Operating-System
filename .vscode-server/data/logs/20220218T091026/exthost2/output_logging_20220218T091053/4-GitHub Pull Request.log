@@ -1,0 +1,2 @@
+[Info] /home/dahirma/.ssh/config: ENOENT: no such file or directory, open '/home/dahirma/.ssh/config'
+[Info] TemporaryState> Error in initialization: Unable to delete nonexistent file 'vscode-remote://ssh-remote+7b22686f73744e616d65223a225643552d434d53432d333132227d/home/dahirma/.vscode-server/data/User/globalStorage/github.vscode-pull-request-github/temp'

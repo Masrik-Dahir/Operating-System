@@ -1,0 +1,60 @@
+[2022-02-18 09:10:26.569] [remoteagent] [info] 
+
+*
+* Visual Studio Code Server
+*
+* Reminder: You may only use this software with Visual Studio family products,
+* as described in the license https://aka.ms/vscode-remote/license
+*
+
+
+[2022-02-18 09:10:26.569] [remoteagent] [info] Extension host agent started.
+[2022-02-18 09:10:26.674] [remoteagent] [info] [127.0.0.1][7727ef22][ManagementConnection] New connection established.
+[2022-02-18 09:10:26.695] [remoteagent] [info] [127.0.0.1][3b53dea9][ExtensionHostConnection] New connection established.
+[2022-02-18 09:10:26.951] [remoteagent] [info] [127.0.0.1][3b53dea9][ExtensionHostConnection] <98906> Launched Extension Host Process.
+[2022-02-18 09:10:33.337] [remoteagent] [info] [127.0.0.1][7727ef22][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-02-18 09:10:33.371] [remoteagent] [info] [127.0.0.1][3b53dea9][ExtensionHostConnection] <98906> Extension Host Process exited with code: 0, signal: null.
+[2022-02-18 09:10:33.372] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-02-18 09:10:52.249] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-02-18 09:10:52.249] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-02-18 09:10:52.404] [remoteagent] [info] [127.0.0.1][db7b7a1e][ManagementConnection] New connection established.
+[2022-02-18 09:10:52.450] [remoteagent] [info] [127.0.0.1][a421dbe3][ExtensionHostConnection] New connection established.
+[2022-02-18 09:10:52.463] [remoteagent] [info] [127.0.0.1][a421dbe3][ExtensionHostConnection] <99021> Launched Extension Host Process.
+[2022-02-18 09:15:52.250] [remoteagent] [info] New EH opened, aborting shutdown
+[2022-02-18 20:31:50.487] [remoteagent] [info] Getting Manifest... github.vscode-pull-request-github
+[2022-02-18 20:31:50.533] [remoteagent] [info] Installing extension: github.vscode-pull-request-github
+[2022-02-18 20:31:51.004] [remoteagent] [info] Downloaded extension: github.vscode-pull-request-github /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/github.vscode-pull-request-github-0.36.2
+[2022-02-18 20:31:51.203] [remoteagent] [info] Extracted extension to /home/dahirma/.vscode-server/extensions/.258b70d0-d330-46e8-bda5-24fb8aaa2565: github.vscode-pull-request-github
+[2022-02-18 20:31:51.215] [remoteagent] [info] Renamed to /home/dahirma/.vscode-server/extensions/github.vscode-pull-request-github-0.36.2
+[2022-02-18 20:31:51.218] [remoteagent] [info] Extracting completed. github.vscode-pull-request-github
+[2022-02-18 20:31:51.219] [remoteagent] [info] Extension installed successfully: github.vscode-pull-request-github
+[2022-02-18 20:31:53.100] [remoteagent] [info] Getting Manifest... knisterpeter.vscode-github
+[2022-02-18 20:31:53.139] [remoteagent] [info] Installing extension: knisterpeter.vscode-github
+[2022-02-18 20:31:53.580] [remoteagent] [info] Downloaded extension: knisterpeter.vscode-github /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/knisterpeter.vscode-github-0.30.7
+[2022-02-18 20:31:55.125] [remoteagent] [info] Extracted extension to /home/dahirma/.vscode-server/extensions/.c61805c5-8f91-43a2-ad9c-80bbe9c94871: knisterpeter.vscode-github
+[2022-02-18 20:31:55.137] [remoteagent] [info] Renamed to /home/dahirma/.vscode-server/extensions/knisterpeter.vscode-github-0.30.7
+[2022-02-18 20:31:55.140] [remoteagent] [info] Extracting completed. knisterpeter.vscode-github
+[2022-02-18 20:31:55.140] [remoteagent] [info] Extension installed successfully: knisterpeter.vscode-github
+[2022-02-18 20:32:45.995] [remoteagent] [info] Getting Manifest... cschleiden.vscode-github-actions
+[2022-02-18 20:32:46.030] [remoteagent] [info] Installing extension: cschleiden.vscode-github-actions
+[2022-02-18 20:32:46.945] [remoteagent] [info] Downloaded extension: cschleiden.vscode-github-actions /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/cschleiden.vscode-github-actions-0.22.0
+[2022-02-18 20:32:48.151] [remoteagent] [info] Extracted extension to /home/dahirma/.vscode-server/extensions/.62c10ce0-ce66-41fc-82e9-64841b90c711: cschleiden.vscode-github-actions
+[2022-02-18 20:32:48.163] [remoteagent] [info] Renamed to /home/dahirma/.vscode-server/extensions/cschleiden.vscode-github-actions-0.22.0
+[2022-02-18 20:32:48.165] [remoteagent] [info] Extracting completed. cschleiden.vscode-github-actions
+[2022-02-18 20:32:48.166] [remoteagent] [info] Extension installed successfully: cschleiden.vscode-github-actions
+[2022-02-18 20:33:28.213] [remoteagent] [info] [127.0.0.1][db7b7a1e][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-02-18 20:33:28.302] [remoteagent] [info] [127.0.0.1][a421dbe3][ExtensionHostConnection] <99021> Extension Host Process exited with code: 0, signal: null.
+[2022-02-18 20:33:28.303] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-02-18 20:33:45.258] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-02-18 20:33:45.258] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-02-18 20:33:45.423] [remoteagent] [info] [127.0.0.1][7a6e2f5c][ManagementConnection] New connection established.
+[2022-02-18 20:33:45.478] [remoteagent] [info] [127.0.0.1][638f4a34][ExtensionHostConnection] New connection established.
+[2022-02-18 20:33:45.500] [remoteagent] [info] [127.0.0.1][638f4a34][ExtensionHostConnection] <117063> Launched Extension Host Process.
+[2022-02-18 20:34:35.040] [remoteagent] [info] Getting Manifest... eamodio.gitlens-insiders
+[2022-02-18 20:34:35.111] [remoteagent] [info] Installing extension: eamodio.gitlens-insiders
+[2022-02-18 20:34:35.611] [remoteagent] [info] Downloaded extension: eamodio.gitlens-insiders /home/dahirma/.vscode-server/data/CachedExtensionVSIXs/eamodio.gitlens-insiders-2022.2.1504
+[2022-02-18 20:34:36.547] [remoteagent] [info] Extracted extension to /home/dahirma/.vscode-server/extensions/.0f5942e3-f4f4-4385-9e7c-3fe950a516c3: eamodio.gitlens-insiders
+[2022-02-18 20:34:36.581] [remoteagent] [info] Renamed to /home/dahirma/.vscode-server/extensions/eamodio.gitlens-insiders-2022.2.1504
+[2022-02-18 20:34:36.597] [remoteagent] [info] Extracting completed. eamodio.gitlens-insiders
+[2022-02-18 20:34:36.599] [remoteagent] [info] Extension installed successfully: eamodio.gitlens-insiders
+[2022-02-18 20:38:45.259] [remoteagent] [info] New EH opened, aborting shutdown

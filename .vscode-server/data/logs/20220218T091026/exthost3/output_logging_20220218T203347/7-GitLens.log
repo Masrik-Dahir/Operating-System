@@ -1,0 +1,4 @@
+[2022-02-19 01:34:38.289] Git Provider(git) failed discovering repositories in file:///home/dahirma
+Error: AggregateError(2)
+	Error: Unable to find git
+	Error: Unable to find git

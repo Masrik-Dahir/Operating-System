@@ -3,13 +3,10 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
- 
-#define SIZE 5
-#define NUMB_PRODUCERS 3
-#define NUMB_CONSUMERS 3
-#define PRODUCER_LOOPS 2
+
 #define min(X,Y) (((X) < (Y)) ? (X) : (Y))
 #define max(X,Y) (((X) > (Y)) ? (X) : (Y))
+#define UPPER_BOUND 5
 
 typedef struct binary_semaphore binary_semaphore;
 
@@ -34,7 +31,6 @@ sem_t wrt, bsem;
 pthread_mutex_t mutex;
 int cnt = 1;
 int numreader = 0;
-
 
 void Semaphore_Init(binary_semaphore* sem, int K){
     sem->value = K;
@@ -68,57 +64,6 @@ void Semaphore_Post(binary_semaphore* sem){
     }
     sem_post(&sem->mutex);
 }
-
-void insertbuffer(int value) {
-    if (buffer_index < SIZE) {
-        buffer[buffer_index++] = value;
-    } else {
-        printf("Buffer overflow\n");
-    }
-}
- 
-buffer_t dequeuebuffer() {
-    if (buffer_index > 0) {
-        return buffer[--buffer_index]; 
-    } else {
-        printf("Buffer underflow\n");
-    }
-    return 0;
-}
- 
- 
-void *producer(void *thread_n) {
-    int thread_numb = *(int *)thread_n;
-    int value;
-    int i=0;
-    while (i++ < PRODUCER_LOOPS) {
-        sleep(rand() % 10);
-        value = rand() % 100;
-
-        Semaphore_Wait(&full_sem); 
-        pthread_mutex_lock(&buffer_mutex); 
-        insertbuffer(value);
-        pthread_mutex_unlock(&buffer_mutex);
-        Semaphore_Post(&empty_sem); 
-        printf("Producer %d added %d to buffer\n", thread_numb, value);
-    }
-    pthread_exit(0);
-}
- 
-void *consumer(void *thread_n) {
-    int thread_numb = *(int *)thread_n;
-    int value;
-    int i=0;
-    while (i++ < PRODUCER_LOOPS) {
-        Semaphore_Wait(&empty_sem);
-        pthread_mutex_lock(&buffer_mutex);
-        value = dequeuebuffer(value);
-        pthread_mutex_unlock(&buffer_mutex);
-        Semaphore_Post(&full_sem);
-        printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
-   }
-    pthread_exit(0);
-}
  
 void *writer(void *wno)
 {   
@@ -128,6 +73,7 @@ void *writer(void *wno)
     Semaphore_Post(&wrt);
 
 }
+
 void *reader(void *rno)
 {   
     // Reader acquire the lock before modifying numreader
@@ -160,8 +106,8 @@ int main()
 
     pthread_t read[10],write[5];
     pthread_mutex_init(&mutex, NULL);
-    sem_init(&wrt, 0, 1);
-    sem_init(&bsem, 0, 5);
+    Semaphore_Init(&wrt, 1);
+    Semaphore_Init(&bsem, UPPER_BOUND);
 
     int a[10] = {1,2,3,4,5,6,7,8,9,10}; //Just used for numbering the producer and consumer
 
@@ -180,8 +126,8 @@ int main()
     }
 
     pthread_mutex_destroy(&mutex);
-    sem_destroy(&wrt);
-    sem_destroy(&bsem);
+    Semaphore_Destroy(&wrt);
+    Semaphore_Destroy(&bsem);
 
     return 0;
     

@@ -25,6 +25,7 @@ int buffer[SIZE];
 int buffer_index;
 int queue_index;
 int buffer_size;
+int consumer_remove_index = 0;
 
 pthread_mutex_t buffer_mutex;
 
@@ -75,7 +76,9 @@ void insertbuffer(int value) {
  
 buffer_t dequeuebuffer() {
     if (buffer_index > 0) {
-        return buffer[--buffer_index]; 
+        consumer_remove_index ++;
+        return buffer[buffer_size-buffer_index-1]; 
+        
     } else {
         printf("Buffer underflow\n");
     }
@@ -87,7 +90,7 @@ void *producer(void *thread_n) {
     int value;
     int i=0;
     while (i++ < PRODUCER_LOOPS) {
-        sleep(rand() % 10);
+        // sleep(rand() % 10);
         value = rand() % 100;
 
         Semaphore_Wait(&full_sem); 
@@ -107,6 +110,7 @@ void *consumer(void *thread_n) {
     while (i++ < PRODUCER_LOOPS) {
         Semaphore_Wait(&empty_sem);
         pthread_mutex_lock(&buffer_mutex);
+        sleep(rand() % 10);
         value = dequeuebuffer(value);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);

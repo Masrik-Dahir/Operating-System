@@ -3,7 +3,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
-#include <stdbool.h>
 
 #define SIZE 5
 #define NUMB_PRODUCERS 3

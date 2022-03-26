@@ -26,7 +26,6 @@ int queue_index;
 int buffer_size;
 
 pthread_mutex_t buffer_mutex;
-
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
  
@@ -65,12 +64,23 @@ void Semaphore_Post(binary_semaphore* sem){
     sem_post(&sem->mutex);
 }
 
-
+void Print_Buffer() {
+    printf("Current Buffer = [");
+   for (int i = 0; i < SIZE; i ++){
+       printf("%d", buffer[i]);
+       if (i+1 < SIZE){
+           printf(", ", buffer[i]);
+       }
+   }
+   printf("]\n\n");
+	
+}
  
 void insertbuffer(int value, int thread_numb) {
     if (buffer_index < SIZE) {
         buffer[buffer_index++] = value;
         printf("Producer %d added %d to buffer\n", thread_numb, value);
+        Print_Buffer();
     } else {
         printf("Buffer overflow\n");
     }
@@ -84,7 +94,6 @@ buffer_t dequeuebuffer() {
     }
     return 0;
 }
- 
  
 void *producer(void *thread_n) {
     int thread_numb = *(int *)thread_n;
@@ -113,7 +122,9 @@ void *consumer(void *thread_n) {
         value = dequeuebuffer(value);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
+        buffer[buffer_index] = 0;
         printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
+        Print_Buffer();
    }
     pthread_exit(0);
 }

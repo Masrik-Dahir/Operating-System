@@ -16,17 +16,10 @@ struct binary_semaphore{
     sem_t mutex;
 };
 
-typedef int buffer_t;
-int buffer[SIZE];
-int buffer_index;
-int queue_index;
-int buffer_size;
-
 pthread_mutex_t buffer_mutex;
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
 
-// Reader Writer variables
 sem_t wrt, bsem;
 pthread_mutex_t mutex;
 int cnt = 1;

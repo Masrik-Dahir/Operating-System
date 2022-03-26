@@ -1,1 +1,20 @@
-implement our own sem_init, sem_post, and sem_wait functions
+q1: implement our own sem_init, sem_post, and sem_wait functions
+q2: 
+
+@Statler the output of q2 without making changes adds an item and removes it. So producer 0 adds 15 consumer 1 dequeues 15 it. 
+Then producer 2 adds 35 and consumer 3 dequeues 35 it. So do we have to switch the print statements so the producer will produce 
+multiple things and then the consumer will dequeue multiple things afterwards to check if it is lifo or fifo? Because I am confused 
+the way it is now it haha. I can't tell how to check fifo because it seems like it adds and immediately removes it.
+
+Statler  8:32 PM
+As the base code is written, Q2 should bound the size of our buffer to 5 elements, but only one producer can access the critical 
+section i.e. store an element to the buffer at a time. Since each producer sleeps randomly between 0 and 10 seconds, you're probably 
+seeing each element being removed by the consumers in real-time. The consumers are just sitting there waiting until something gets 
+stored in the buffer to remove it. (edited) 
+2 files
+
+
+8:33
+A temporary solution would be to comment out the sleep() call in the producer code and decrease the number of consumers to 1.
+8:33
+This way, we can see the order in which the single consumer removes the element from the buffer. (edited) 

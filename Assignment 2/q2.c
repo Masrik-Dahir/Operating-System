@@ -19,13 +19,11 @@ struct binary_semaphore{
     sem_t mutex;
 };
 
-
 typedef int buffer_t;
 int buffer[SIZE];
 int buffer_index;
 int queue_index;
 int buffer_size;
-int consumer_remove_index = 0;
 
 pthread_mutex_t buffer_mutex;
 
@@ -76,15 +74,17 @@ void insertbuffer(int value) {
  
 buffer_t dequeuebuffer() {
     if (buffer_index > 0) {
-        consumer_remove_index ++;
-        return buffer[buffer_size-buffer_index-1]; 
-        
+        // printf(" buffer_mutex: %d\n buffer_index: %d\n buffer_size: %d\n", buffer_mutex, buffer_index, buffer_size);
+        // printf(" buffer[buffer_size] = %d\n", buffer[buffer_size]);
+        // int new_buffer_index = buffer_index - 1;
+        // printf(" buffer[buffer_index] = %d\n", buffer[new_buffer_index]);
+        return buffer[buffer_size - buffer_index--]; 
     } else {
         printf("Buffer underflow\n");
     }
     return 0;
 }
-
+ 
 void *producer(void *thread_n) {
     int thread_numb = *(int *)thread_n;
     int value;
@@ -108,9 +108,9 @@ void *consumer(void *thread_n) {
     int value;
     int i=0;
     while (i++ < PRODUCER_LOOPS) {
+        sleep(rand() % 10);
         Semaphore_Wait(&empty_sem);
         pthread_mutex_lock(&buffer_mutex);
-        sleep(rand() % 10);
         value = dequeuebuffer(value);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
@@ -169,11 +169,3 @@ int main(int argc, int **argv) {
  
     return 0;
 }
-
-// static void wait_for_partner(struct inode*, unsigned int *cnt){
-//     int cur = *cnt;
-
-//     while (curr == *cnt){
-
-//     }
-// }

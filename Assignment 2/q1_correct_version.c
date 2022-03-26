@@ -81,7 +81,6 @@ buffer_t dequeuebuffer() {
     return 0;
 }
  
- 
 void *producer(void *thread_n) {
     int thread_numb = *(int *)thread_n;
     int value;

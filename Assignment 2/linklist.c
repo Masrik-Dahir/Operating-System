@@ -3,18 +3,18 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct node {
+struct buffer {
    int data;
    int key;
-   struct node *next;
+   struct buffer *next;
 };
 
-struct node *head = NULL;
-struct node *current = NULL;
+struct buffer *head = NULL;
+struct buffer *current = NULL;
 
 //display the list
-void printList() {
-   struct node *ptr = head;
+void Print_Buffer() {
+   struct buffer *ptr = head;
 	
    //start from the beginning
    while(ptr != NULL) {
@@ -25,24 +25,24 @@ void printList() {
 }
 
 //insert link at the first location
-void insertFirst(int data) {
+void Insert_First(int data) {
    //create a link
-   struct node *link = (struct node*) malloc(sizeof(struct node));
+   struct buffer *link = (struct buffer*) malloc(sizeof(struct buffer));
 	
    link->data = data;
 	
-   //point it to old first node
+   //point it to old first buffer
    link->next = head;
 	
-   //point first to new first node
+   //point first to new first buffer
    head = link;
 }
 
 //delete first item
-struct node* deleteFirst() {
+struct buffer* Deleter_First() {
 
    //save reference to first link
-   struct node *tempLink = head;
+   struct buffer *tempLink = head;
 	
    //mark next to first link as first 
    head = head->next;
@@ -58,7 +58,7 @@ bool isEmpty() {
 
 int length() {
    int length = 0;
-   struct node *current;
+   struct buffer *current;
 	
    for(current = head; current != NULL; current = current->next) {
       length++;
@@ -68,10 +68,10 @@ int length() {
 }
 
 //find a link with given key
-struct node* find(int key) {
+struct buffer* find(int key) {
 
    //start from the first link
-   struct node* current = head;
+   struct buffer* current = head;
 
    //if list is empty
    if(head == NULL) {
@@ -81,7 +81,7 @@ struct node* find(int key) {
    //navigate through list
    while(current->key != key) {
 	
-      //if it is last node
+      //if it is last buffer
       if(current->next == NULL) {
          return NULL;
       } else {
@@ -97,21 +97,21 @@ struct node* find(int key) {
 
 
 void main() {
-   insertFirst(10);
-   insertFirst(20);
-   insertFirst(30);
-   insertFirst(1);
-   insertFirst(40);
-   insertFirst(56); 
+   Insert_First(10);
+   Insert_First(20);
+   Insert_First(30);
+   Insert_First(1);
+   Insert_First(40);
+   Insert_First(56); 
 
    printf("Original List:\n"); 
 	
    //print list
-   printList();
+   Print_Buffer();
 
-   deleteFirst();
+   Deleter_First();
 
     printf("\n");
-   printList();
+   Print_Buffer();
 
 }

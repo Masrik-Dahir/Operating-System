@@ -20,6 +20,15 @@ struct binary_semaphore{
     sem_t mutex;
 };
 
+struct buffer {
+   int value;
+   int key;
+   struct buffer *next;
+};
+
+struct buffer *head = NULL;
+struct buffer *current = NULL;
+
 typedef int buffer_t;
 
 pthread_mutex_t buffer_mutex;
@@ -27,21 +36,13 @@ pthread_mutex_t buffer_mutex;
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
 
-struct node {
-   int data;
-   int key;
-   struct node *next;
-};
-struct node *head = NULL;
-struct node *current = NULL;
-
 //display the list
-void printList() {
-   struct node *ptr = head;
+void Print_Buffer() {
+   struct buffer *ptr = head;
 	printf("Current buffer = [");
    //start from the beginning
    while(ptr != NULL) {
-      printf("%d", ptr->data);
+      printf("%d", ptr->value);
       ptr = ptr->next;
       if (ptr != NULL){
           printf(", ");
@@ -52,24 +53,24 @@ void printList() {
 }
 
 //insert link at the first location
-void insertFirst(int data) {
+void Insert_First(int value) {
    //create a link
-   struct node *link = (struct node*) malloc(sizeof(struct node));
+   struct buffer *link = (struct buffer*) malloc(sizeof(struct buffer));
 	
-   link->data = data;
+   link->value = value;
 	
-   //point it to old first node
+   //point it to old first buffer
    link->next = head;
 	
-   //point first to new first node
+   //point first to new first buffer
    head = link;
 }
 
 //delete first item
-struct node* deleteFirst() {
+struct buffer* Deleter_First() {
 
    //save reference to first link
-   struct node *tempLink = head;
+   struct buffer *tempLink = head;
 	
    //mark next to first link as first 
    head = head->next;
@@ -78,14 +79,9 @@ struct node* deleteFirst() {
    return tempLink;
 }
 
-//is list empty
-bool isEmpty() {
-   return head == NULL;
-}
-
 int length() {
    int length = 0;
-   struct node *current;
+   struct buffer *current;
 	
    for(current = head; current != NULL; current = current->next) {
       length++;
@@ -93,11 +89,6 @@ int length() {
 	
    return length;
 }
-
-
-
-
-
 
 void Semaphore_Init(binary_semaphore* sem, int K){
     sem->value = K;
@@ -134,9 +125,9 @@ void Semaphore_Post(binary_semaphore* sem){
 
 void insertbuffer(int value, int thread_numb) {
     if (length() < SIZE) {
-        insertFirst(value);
+        Insert_First(value);
         printf("Producer %d added %d to buffer\n", thread_numb, value);
-        printList();
+        Print_Buffer();
             
     } else {
         printf("Buffer overflow\n");
@@ -145,8 +136,8 @@ void insertbuffer(int value, int thread_numb) {
  
 buffer_t dequeuebuffer() {
     if (length() > 0) {
-        struct node *temp = deleteFirst();
-        return temp->data;
+        struct buffer *temp = Deleter_First();
+        return temp->value;
     } else {
         printf("Buffer underflow\n");
     }
@@ -182,7 +173,7 @@ void *consumer(void *thread_n) {
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
         printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
-        printList();
+        Print_Buffer();
    }
     pthread_exit(0);
 }

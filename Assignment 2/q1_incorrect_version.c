@@ -30,7 +30,6 @@ pthread_mutex_t buffer_mutex;
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
  
-// This is the incorrect version for #1
 void Semaphore_Init(binary_semaphore* sem, int K){
     sem->value = K;
     sem_init(&sem->gate, 0, 1);
@@ -55,14 +54,14 @@ void Semaphore_Wait(binary_semaphore* sem){
     sem_post(&sem->mutex);
 }
 
-void Semaphore_Signal(binary_semaphore* sem){
-    sem_wait(&sem->mutex);
-    sem->value++;
-    if(sem->value == 1){
-        sem_post(&sem->gate);
-    }
-    sem_wait(&sem->mutex);
-}
+// void Semaphore_Signal(binary_semaphore* sem){
+//     sem_wait(&sem->mutex);
+//     sem->value++;
+//     if(sem->value == 1){
+//         sem_post(&sem->gate);
+//     }
+//     sem_wait(&sem->mutex);
+// }
 
 void Semaphore_Post(binary_semaphore* sem){
     sem_wait(&sem->mutex);
@@ -100,16 +99,11 @@ void *producer(void *thread_n) {
     while (i++ < PRODUCER_LOOPS) {
         sleep(rand() % 10);
         value = rand() % 100;
-
         Semaphore_Wait(&full_sem); 
-        // sem_wait(&full_sem);
-
-
         pthread_mutex_lock(&buffer_mutex); 
         insertbuffer(value);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&empty_sem); 
-        // sem_post(&empty_sem);
         printf("Producer %d added %d to buffer\n", thread_numb, value);
     }
     pthread_exit(0);
@@ -121,12 +115,10 @@ void *consumer(void *thread_n) {
     int i=0;
     while (i++ < PRODUCER_LOOPS) {
         Semaphore_Wait(&empty_sem);
-        // sem_wait(&empty_sem);
         pthread_mutex_lock(&buffer_mutex);
         value = dequeuebuffer(value);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
-        // sem_post(&full_sem); 
         printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
    }
     pthread_exit(0);
@@ -145,13 +137,6 @@ int main(int argc, int **argv) {
 
     Semaphore_Init(&full_sem, buffer_size);
     Semaphore_Init(&empty_sem, 0);
-
-    // sem_init(&full_sem, // sem_t *sem
-    //          0, // int pshared. 0 = shared between threads of process,  1 = shared between processes
-    //          SIZE); // unsigned int value. Initial value
-    // sem_init(&empty_sem,
-    //          0,
-    //          0);
 
     int process_pid[NUMB_PRODUCERS];
     pthread_t thread[NUMB_PRODUCERS + NUMB_CONSUMERS];
@@ -186,10 +171,6 @@ int main(int argc, int **argv) {
 
     Semaphore_Destroy(&full_sem);
     Semaphore_Destroy(&empty_sem);
-
-
-    // sem_destroy(&full_sem);
-    // sem_destroy(&empty_sem);
  
     return 0;
 }

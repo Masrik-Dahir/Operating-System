@@ -66,7 +66,16 @@ void Semaphore_Post(binary_semaphore* sem){
 
 void insertbuffer(int value) {
     if (buffer_index < SIZE) {
-        buffer[buffer_index++] = value;
+        
+        int count = 1;
+        // buffer_index = 0; 
+        while(count <= SIZE){
+            buffer[count] = buffer[count-1];
+            count ++;
+            // buffer_index ++;
+        }
+        buffer[buffer_index ++] = value;
+
     } else {
         printf("Buffer overflow\n");
     }
@@ -74,11 +83,7 @@ void insertbuffer(int value) {
  
 buffer_t dequeuebuffer() {
     if (buffer_index > 0) {
-        // printf(" buffer_mutex: %d\n buffer_index: %d\n buffer_size: %d\n", buffer_mutex, buffer_index, buffer_size);
-        // printf(" buffer[buffer_size] = %d\n", buffer[buffer_size]);
-        // int new_buffer_index = buffer_index - 1;
-        // printf(" buffer[buffer_index] = %d\n", buffer[new_buffer_index]);
-        return buffer[buffer_size - buffer_index--]; 
+        return buffer[--buffer_index]; 
     } else {
         printf("Buffer underflow\n");
     }

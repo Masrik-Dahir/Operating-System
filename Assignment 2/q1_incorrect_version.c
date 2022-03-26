@@ -67,9 +67,10 @@ void Semaphore_Post(binary_semaphore* sem){
 
 
  
-void insertbuffer(int value) {
+void insertbuffer(int value, int thread_numb) {
     if (buffer_index < SIZE) {
         buffer[buffer_index++] = value;
+        printf("Producer %d added %d to buffer\n", thread_numb, value);
     } else {
         printf("Buffer overflow\n");
     }
@@ -90,14 +91,13 @@ void *producer(void *thread_n) {
     int value;
     int i=0;
     while (i++ < PRODUCER_LOOPS) {
-        sleep(rand() % 10);
+        // sleep(rand() % 10);
         value = rand() % 100;
         Semaphore_Wait(&full_sem); 
         pthread_mutex_lock(&buffer_mutex); 
-        insertbuffer(value);
+        insertbuffer(value, thread_numb);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&empty_sem); 
-        printf("Producer %d added %d to buffer\n", thread_numb, value);
     }
     pthread_exit(0);
 }
@@ -107,6 +107,7 @@ void *consumer(void *thread_n) {
     int value;
     int i=0;
     while (i++ < PRODUCER_LOOPS) {
+        sleep(rand() % 10);
         Semaphore_Wait(&empty_sem);
         pthread_mutex_lock(&buffer_mutex);
         value = dequeuebuffer(value);
@@ -116,7 +117,7 @@ void *consumer(void *thread_n) {
    }
     pthread_exit(0);
 }
- 
+
 int main(int argc, int **argv) {
     clock_t start_time = clock();
     buffer_index = 0;

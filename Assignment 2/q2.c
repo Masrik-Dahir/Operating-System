@@ -3,7 +3,8 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
- 
+#include <stdbool.h>
+
 #define SIZE 5
 #define NUMB_PRODUCERS 3
 #define NUMB_CONSUMERS 3
@@ -20,15 +21,82 @@ struct binary_semaphore{
 };
 
 typedef int buffer_t;
-int buffer[SIZE];
-int buffer_index;
-int queue_index;
-int buffer_size;
 
 pthread_mutex_t buffer_mutex;
 
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
+
+struct node {
+   int data;
+   int key;
+   struct node *next;
+};
+struct node *head = NULL;
+struct node *current = NULL;
+
+//display the list
+void printList() {
+   struct node *ptr = head;
+	printf("Current buffer = [");
+   //start from the beginning
+   while(ptr != NULL) {
+      printf("%d", ptr->data);
+      ptr = ptr->next;
+      if (ptr != NULL){
+          printf(", ");
+      }
+   }
+   printf("]\n\n");
+	
+}
+
+//insert link at the first location
+void insertFirst(int data) {
+   //create a link
+   struct node *link = (struct node*) malloc(sizeof(struct node));
+	
+   link->data = data;
+	
+   //point it to old first node
+   link->next = head;
+	
+   //point first to new first node
+   head = link;
+}
+
+//delete first item
+struct node* deleteFirst() {
+
+   //save reference to first link
+   struct node *tempLink = head;
+	
+   //mark next to first link as first 
+   head = head->next;
+	
+   //return the deleted link
+   return tempLink;
+}
+
+//is list empty
+bool isEmpty() {
+   return head == NULL;
+}
+
+int length() {
+   int length = 0;
+   struct node *current;
+	
+   for(current = head; current != NULL; current = current->next) {
+      length++;
+   }
+	
+   return length;
+}
+
+
+
+
 
 
 void Semaphore_Init(binary_semaphore* sem, int K){
@@ -64,26 +132,21 @@ void Semaphore_Post(binary_semaphore* sem){
     sem_post(&sem->mutex);
 }
 
-void insertbuffer(int value) {
-    if (buffer_index < SIZE) {
-        
-        int count = 1;
-        // buffer_index = 0; 
-        while(count <= SIZE){
-            buffer[count] = buffer[count-1];
-            count ++;
-            // buffer_index ++;
-        }
-        buffer[buffer_index ++] = value;
-
+void insertbuffer(int value, int thread_numb) {
+    if (length() < SIZE) {
+        insertFirst(value);
+        printf("Producer %d added %d to buffer\n", thread_numb, value);
+        printList();
+            
     } else {
         printf("Buffer overflow\n");
     }
 }
  
 buffer_t dequeuebuffer() {
-    if (buffer_index > 0) {
-        return buffer[--buffer_index]; 
+    if (length() > 0) {
+        struct node *temp = deleteFirst();
+        return temp->data;
     } else {
         printf("Buffer underflow\n");
     }
@@ -97,13 +160,12 @@ void *producer(void *thread_n) {
     while (i++ < PRODUCER_LOOPS) {
         // sleep(rand() % 10);
         value = rand() % 100;
-
         Semaphore_Wait(&full_sem); 
         pthread_mutex_lock(&buffer_mutex); 
-        insertbuffer(value);
+        insertbuffer(value, thread_numb);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&empty_sem); 
-        printf("Producer %d added %d to buffer\n", thread_numb, value);
+        
     }
     pthread_exit(0);
 }
@@ -120,22 +182,19 @@ void *consumer(void *thread_n) {
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
         printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
+        printList();
    }
     pthread_exit(0);
 }
  
 int main(int argc, int **argv) {
     clock_t start_time = clock();
-    buffer_index = 0;
-    queue_index = 0;
-    buffer_size = SIZE;
 
     srand(time(NULL));
 
-
     pthread_mutex_init(&buffer_mutex, NULL);
 
-    Semaphore_Init(&full_sem, buffer_size);
+    Semaphore_Init(&full_sem, SIZE);
     Semaphore_Init(&empty_sem, 0);
 
     int process_pid[NUMB_PRODUCERS];
@@ -143,7 +202,6 @@ int main(int argc, int **argv) {
     int thread_numb[NUMB_PRODUCERS + NUMB_CONSUMERS];
 
     int thread_id = 0;
-
     for (int i = 0; i < NUMB_PRODUCERS; i++) {
         thread_numb[thread_id] = i;
         pthread_create(thread + thread_id, 
@@ -152,6 +210,7 @@ int main(int argc, int **argv) {
                        thread_numb + thread_id);  
         thread_id ++;
     }
+    
     for (int i = 0; i < NUMB_CONSUMERS; i++) {
         thread_numb[thread_id] = i;
         pthread_create(thread + thread_id, 
@@ -160,7 +219,7 @@ int main(int argc, int **argv) {
                        thread_numb + thread_id);
         thread_id ++;
     }
- 
+    
     for (int i = 0; i < NUMB_PRODUCERS + NUMB_CONSUMERS; i++){
         pthread_join(thread[i], NULL);
     }

@@ -29,6 +29,8 @@ void *reader(void *rno)
         sem_wait(&wrt); // If this id the first reader, then it will block the writer
     }
     pthread_mutex_unlock(&mutex);
+
+    
     // Reading Section
     printf("Reader %d: read cnt as %d\n",*((int *)rno),cnt);
 

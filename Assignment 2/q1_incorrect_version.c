@@ -15,7 +15,7 @@ typedef struct binary_semaphore binary_semaphore;
 
 struct binary_semaphore{
     int value;
-    sem_t gate;
+    sem_t wait;
     sem_t mutex;
 };
 
@@ -31,48 +31,36 @@ struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
  
 void Semaphore_Init(binary_semaphore* sem, int K){
-    sem->value = K;
-    if (K > 0){
-        sem_init(&sem->gate,0,1);
-    }
-    else{
-        sem_init(&sem->mutex,0,1);
-    }
-    sem_init(&sem->mutex,0,1);
+    sem->value=K;  
+    sem_init(&(sem->wait), 0, 0);
+    sem_init(&(sem->mutex), 0, 1);
 }
 
 void Semaphore_Destroy(binary_semaphore* sem){
     sem->value = 0;
-    sem_destroy(&sem->gate);
+    sem_destroy(&sem->wait);
     sem_destroy(&sem->mutex);
 }
 
 void Semaphore_Wait(binary_semaphore* sem){
-    sem_wait(&sem->gate);
     sem_wait(&sem->mutex);
-
     sem->value--;
 
-    if(sem->value > 0){
-        sem_post(&sem->gate);
+    if(sem->value < 0){
+        sem_post(&sem->mutex);
+        sem_wait(&sem->wait);
     }
-    sem_post(&sem->mutex);
+    else{
+        sem_post(&sem->mutex);
+    }
+    
 }
-
-// void Semaphore_Signal(binary_semaphore* sem){
-//     sem_wait(&sem->mutex);
-//     sem->value++;
-//     if(sem->value == 1){
-//         sem_post(&sem->gate);
-//     }
-//     sem_wait(&sem->mutex);
-// }
 
 void Semaphore_Post(binary_semaphore* sem){
     sem_wait(&sem->mutex);
     sem->value++;
-    if(sem->value == 1){
-        sem_post(&sem->gate);
+    if(sem->value <= 0){
+        sem_post(&sem->wait);
     }
     sem_post(&sem->mutex);
 }

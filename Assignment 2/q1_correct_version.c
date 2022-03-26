@@ -29,18 +29,25 @@ pthread_mutex_t buffer_mutex;
 
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
- 
+
+
 void Semaphore_Init(binary_semaphore* sem, int K){
     sem->value = K;
-    if(sem->value > 0){
-        sem_init(&sem->gate, 0, 1);
-    }
-    else if (sem->value == 0){
-        sem_init(&sem->gate, 0, 0);
-    }
-
-    sem_init(&sem->mutex, 0, 1);
+    sem_init(&sem->gate, 0, min(1,K));
+    sem_init(&sem->mutex,0,1);
 }
+
+// void Semaphore_Init(binary_semaphore* sem, int K){
+//     sem->value = K;
+//     if(sem->value > 0){
+//         sem_init(&sem->gate, 0, 1);
+//     }
+//     else if (sem->value == 0){
+//         sem_init(&sem->gate, 0, 0);
+//     }
+
+//     sem_init(&sem->mutex, 0, 1);
+// }
 
 void Semaphore_Destroy(binary_semaphore* sem){
     sem->value = 0;

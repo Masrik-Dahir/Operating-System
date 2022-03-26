@@ -32,8 +32,13 @@ struct binary_semaphore empty_sem;
  
 void Semaphore_Init(binary_semaphore* sem, int K){
     sem->value = K;
-    sem_init(&sem->gate, 0, 1);
-    sem_init(&sem->mutex, 0, 1);
+    if (K > 0){
+        sem_init(&sem->gate,0,1);
+    }
+    else{
+        sem_init(&sem->mutex,0,1);
+    }
+    sem_init(&sem->mutex,0,1);
 }
 
 void Semaphore_Destroy(binary_semaphore* sem){

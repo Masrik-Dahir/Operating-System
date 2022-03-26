@@ -7,7 +7,7 @@ This program provides a possible solution for first readers writers problem usin
 I have used 10 readers and 5 producers to demonstrate the solution. You can always play with these values.
 */
 
-sem_t wrt;
+sem_t wrt, bsem;
 pthread_mutex_t mutex;
 int cnt = 1;
 int numreader = 0;
@@ -30,9 +30,13 @@ void *reader(void *rno)
     }
     pthread_mutex_unlock(&mutex);
 
-    
+
     // Reading Section
-    printf("Reader %d: read cnt as %d\n",*((int *)rno),cnt);
+    sem_wait(&bsem);
+    printf("Reader %d Started: read cnt as %d\n",*((int *)rno),cnt);
+    sleep(2);
+    printf("Reader %d Completed: read cnt as %d\n",*((int *)rno),cnt);
+    sem_post(&bsem);
 
     // Reader acquire the lock before modifying numreader
     pthread_mutex_lock(&mutex);
@@ -49,6 +53,7 @@ int main()
     pthread_t read[10],write[5];
     pthread_mutex_init(&mutex, NULL);
     sem_init(&wrt,0,1);
+    sem_init(&bsem, 0, 2);
 
     int a[10] = {1,2,3,4,5,6,7,8,9,10}; //Just used for numbering the producer and consumer
 

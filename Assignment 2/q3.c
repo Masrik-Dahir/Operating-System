@@ -26,9 +26,14 @@ int queue_index;
 int buffer_size;
 
 pthread_mutex_t buffer_mutex;
-
 struct binary_semaphore full_sem;
 struct binary_semaphore empty_sem;
+
+// Reader Writer variables
+sem_t wrt, bsem;
+pthread_mutex_t mutex;
+int cnt = 1;
+int numreader = 0;
 
 
 void Semaphore_Init(binary_semaphore* sem, int K){
@@ -115,53 +120,69 @@ void *consumer(void *thread_n) {
     pthread_exit(0);
 }
  
-int main(int argc, int **argv) {
-    clock_t start_time = clock();
-    buffer_index = 0;
-    queue_index = 0;
-    buffer_size = SIZE;
+void *writer(void *wno)
+{   
+    Semaphore_Wait(&wrt);
+    cnt = cnt*2;
+    printf("Writer %d modified cnt to %d\n",(*((int *)wno)),cnt);
+    Semaphore_Post(&wrt);
 
-    srand(time(NULL));
-
-
-    pthread_mutex_init(&buffer_mutex, NULL);
-
-    Semaphore_Init(&full_sem, buffer_size);
-    Semaphore_Init(&empty_sem, 0);
-
-    int process_pid[NUMB_PRODUCERS];
-    pthread_t thread[NUMB_PRODUCERS + NUMB_CONSUMERS];
-    int thread_numb[NUMB_PRODUCERS + NUMB_CONSUMERS];
-
-    int thread_id = 0;
-
-    for (int i = 0; i < NUMB_PRODUCERS; i++) {
-        thread_numb[thread_id] = i;
-        pthread_create(thread + thread_id, 
-                       NULL, 
-                       producer, 
-                       thread_numb + thread_id);  
-        thread_id ++;
+}
+void *reader(void *rno)
+{   
+    // Reader acquire the lock before modifying numreader
+    pthread_mutex_lock(&mutex);
+    numreader++;
+    if(numreader == 1) {
+        Semaphore_Wait(&wrt); // If this id the first reader, then it will block the writer
     }
-    for (int i = 0; i < NUMB_CONSUMERS; i++) {
-        thread_numb[thread_id] = i;
-        pthread_create(thread + thread_id, 
-                       NULL, 
-                       consumer, 
-                       thread_numb + thread_id);
-        thread_id ++;
-    }
- 
-    for (int i = 0; i < NUMB_PRODUCERS + NUMB_CONSUMERS; i++){
-        pthread_join(thread[i], NULL);
-    }
-    
-    printf("Elapsed Time: %f seconds\n", ((double)clock() - start_time)/CLOCKS_PER_SEC);
+    pthread_mutex_unlock(&mutex);
 
-    pthread_mutex_destroy(&buffer_mutex);
 
-    Semaphore_Destroy(&full_sem);
-    Semaphore_Destroy(&empty_sem);
- 
+    // Reading Section
+    Semaphore_Wait(&bsem);
+    printf("Reader %d Started: read cnt as %d\n",*((int *)rno),cnt);
+    sleep(2);
+    printf("Reader %d Completed: read cnt as %d\n",*((int *)rno),cnt);
+    Semaphore_Post(&bsem);
+
+    // Reader acquire the lock before modifying numreader
+    pthread_mutex_lock(&mutex);
+    numreader--;
+    if(numreader == 0) {
+        Semaphore_Post(&wrt); // If this is the last reader, it will wake up the writer.
+    }
+    pthread_mutex_unlock(&mutex);
+}
+
+int main()
+{   
+
+    pthread_t read[10],write[5];
+    pthread_mutex_init(&mutex, NULL);
+    sem_init(&wrt, 0, 1);
+    sem_init(&bsem, 0, 5);
+
+    int a[10] = {1,2,3,4,5,6,7,8,9,10}; //Just used for numbering the producer and consumer
+
+    for(int i = 0; i < 10; i++) {
+        pthread_create(&read[i], NULL, (void *)reader, (void *)&a[i]);
+    }
+    for(int i = 0; i < 5; i++) {
+        pthread_create(&write[i], NULL, (void *)writer, (void *)&a[i]);
+    }
+
+    for(int i = 0; i < 10; i++) {
+        pthread_join(read[i], NULL);
+    }
+    for(int i = 0; i < 5; i++) {
+        pthread_join(write[i], NULL);
+    }
+
+    pthread_mutex_destroy(&mutex);
+    sem_destroy(&wrt);
+    sem_destroy(&bsem);
+
     return 0;
+    
 }

@@ -21,8 +21,6 @@ pthread_mutex_t buffer_mutex;
 sem_t full_sem;  /* when 0, buffer is full */
 sem_t empty_sem; /* when 0, buffer is empty. Kind of
                     like an index for the buffer */
-
-
 struct counting_semaphore{
     int value;
     sem_t gate;

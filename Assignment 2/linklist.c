@@ -3,52 +3,43 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct buffer {
+struct node {
    int data;
    int key;
-   struct buffer *next;
+   struct node *next;
+   struct node *prev;
 };
 
-struct buffer *head = NULL;
-struct buffer *current = NULL;
+struct node *head = NULL;
+struct node *current = NULL;
 
 //display the list
-void Print_Buffer() {
-   struct buffer *ptr = head;
-	
+void printList() {
+   struct node *ptr = head;
+	printf("Current buffer = [");
    //start from the beginning
    while(ptr != NULL) {
-      printf("(%d)\n", ptr->data);
+      printf("%d", ptr->data);
       ptr = ptr->next;
+      if (ptr != NULL){
+          printf(", ");
+      }
    }
-	
+   printf("]\n\n");
 }
 
 //insert link at the first location
-void Insert_First(int data) {
+void insertFirst(int data) {
    //create a link
-   struct buffer *link = (struct buffer*) malloc(sizeof(struct buffer));
+   struct node *link = (struct node*) malloc(sizeof(struct node));
 	
    link->data = data;
 	
-   //point it to old first buffer
+   //point it to old first node
    link->next = head;
 	
-   //point first to new first buffer
+   //point first to new first node
    head = link;
-}
-
-//delete first item
-struct buffer* Deleter_First() {
-
-   //save reference to first link
-   struct buffer *tempLink = head;
-	
-   //mark next to first link as first 
-   head = head->next;
-	
-   //return the deleted link
-   return tempLink;
 }
 
 //is list empty
@@ -58,7 +49,7 @@ bool isEmpty() {
 
 int length() {
    int length = 0;
-   struct buffer *current;
+   struct node *current;
 	
    for(current = head; current != NULL; current = current->next) {
       length++;
@@ -67,51 +58,41 @@ int length() {
    return length;
 }
 
-//find a link with given key
-struct buffer* find(int key) {
+//delete a link with given key
+struct node* delete() {
 
-   //start from the first link
-   struct buffer* current = head;
 
-   //if list is empty
-   if(head == NULL) {
-      return NULL;
-   }
-
-   //navigate through list
-   while(current->key != key) {
-	
-      //if it is last buffer
-      if(current->next == NULL) {
-         return NULL;
-      } else {
-         //go to next link
-         current = current->next;
-      }
-   }      
-	
-   //if data found, return the current Link
-   return current;
 }
 
-
+void reverse(struct node** head_ref) {
+   struct node* prev   = NULL;
+   struct node* current = *head_ref;
+   struct node* next;
+	
+   while (current != NULL) {
+      next  = current->next;
+      current->next = prev;   
+      prev = current;
+      current = next;
+   }
+	
+   *head_ref = prev;
+}
 
 void main() {
-   Insert_First(10);
-   Insert_First(20);
-   Insert_First(30);
-   Insert_First(1);
-   Insert_First(40);
-   Insert_First(56); 
+   insertFirst(10);
+   insertFirst(20);
+   insertFirst(30);
+   insertFirst(1);
+   insertFirst(40);
+   insertFirst(56); 
 
-   printf("Original List:\n"); 
+   printf("Original List: "); 
 	
    //print list
-   Print_Buffer();
+   printList();
 
-   Deleter_First();
-
-    printf("\n");
-   Print_Buffer();
-
+   delete(4);
+   
+   printList();
 }

@@ -86,9 +86,13 @@ void insertbuffer(int value, int thread_numb) {
     }
 }
  
-buffer_t dequeuebuffer() {
+buffer_t dequeuebuffer(int thread_numb) {
     if (buffer_index > 0) {
-        return buffer[--buffer_index]; 
+        int new = buffer[--buffer_index];
+        buffer[buffer_index] = 0;
+        printf("Consumer %d dequeue %d from buffer\n", thread_numb, new);
+        Print_Buffer(); 
+        return new; 
     } else {
         printf("Buffer underflow\n");
     }
@@ -119,12 +123,10 @@ void *consumer(void *thread_n) {
         sleep(rand() % 10);
         Semaphore_Wait(&empty_sem);
         pthread_mutex_lock(&buffer_mutex);
-        value = dequeuebuffer(value);
+        value = dequeuebuffer(thread_numb);
         pthread_mutex_unlock(&buffer_mutex);
         Semaphore_Post(&full_sem);
-        buffer[buffer_index] = 0;
-        printf("Consumer %d dequeue %d from buffer\n", thread_numb, value);
-        Print_Buffer();
+        
    }
     pthread_exit(0);
 }

@@ -1,3 +1,17 @@
+/*
+ * Masrik Dahir
+ * Date: 03/28/2022
+ * The reader thread reads cnt value. The pupose of the asssignment is to Upper bound numnber of reader
+ * accessing the critical section. In my case I uppper bounded my reader to 5. Therefore at any time only
+ * 5 reader reader can read; other readers has to wait for previous reader to complete before reading. 
+ * The writer thread modified the cnt.
+ * 
+ * 
+ * Usage Guide
+ * (1) gcc -g q1_correct_version.c -o q1_correct_version.exe -lpthread
+ * (2) ./q1_correct_version.exe
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

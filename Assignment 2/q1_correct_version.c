@@ -1,3 +1,16 @@
+/*
+ * Masrik Dahir
+ * Date: 03/28/2022
+ * The producer thread randomly select a integer (out of 0 to 100) and add it to the bounded buffer. The consumer thread dequeue the 
+ * integer. The LIFO statigy is used in the bounded buffer to queue elements in Last while dequeuing them first
+ * The q1_correct_version.c impolements the correct version of semaphore
+ * 
+ * 
+ * Usage Guide
+ * (1) gcc -g q1_correct_version.c -o q1_correct_version.exe -lpthread
+ * (2) ./q1_correct_version.exe
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

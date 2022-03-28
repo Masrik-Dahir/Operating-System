@@ -8,8 +8,8 @@
  * 
  * 
  * Usage Guide
- * (1) gcc -g q1_correct_version.c -o q1_correct_version.exe -lpthread
- * (2) ./q1_correct_version.exe
+ * (1) gcc -g q3.c -o q3.exe -lpthread
+ * (2) ./q3.exe
  */
 
 #include <stdio.h>

@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/masrikdahir/CLionProjects/Operating System/a.c
+sys/types.h
+-
+sys/ipc.h
+-
+sys/shm.h
+-
+stdio.h
+-
+stdlib.h
+-
+Windows.h
+-
+unistd.h
+-
+string.h
+-
+

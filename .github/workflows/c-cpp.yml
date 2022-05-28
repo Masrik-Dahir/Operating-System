@@ -1,0 +1,40 @@
+name: CMake
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run Assignment 1 Prtocess a
+      run: cd Assignment\ 1; cd Question\ 1; gcc process_a.c -o process_a;
+    - name: Run Assignment 1 Prtocess b
+      run: cd Assignment\ 1; cd Question\ 1; gcc process_b.c -o process_b;
+    - name: Run Assignment 1 Prtocess c
+      run: cd Assignment\ 1; cd Question\ 1; gcc process_c.c -o process_c;
+      
+    - name: Run Assignment 1 fork_nested
+      run: cd Assignment\ 1; cd Question\ 2; gcc fork_nested.c -o fork_nested;
+    - name: Run Assignment 1 fork_standard.c
+      run: cd Assignment\ 1; cd Question\ 2; gcc fork_standard.c -o fork_standard;
+      
+      
+    - name: Run Assignment 1 Question 4
+      run: cd Assignment\ 1; cd Question\ 4; make;
+    - name: Run Assignment 1 Question 5
+      run: cd Assignment\ 1; cd Question\ 5; make;
+    

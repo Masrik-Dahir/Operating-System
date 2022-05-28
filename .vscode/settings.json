@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "limits": "c",
+        "assert.h": "c"
+    }
+}
